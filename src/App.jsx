@@ -1,11 +1,18 @@
-// Import para usar o React
+// Importação de bibliotecas para usar o React
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
+// Importação de Componentes Criados
 import Header from "./Components/Header";
 import Tasks from "./Components/Tasks";
 import AddTask from './Components/AddTask';
+import TaskDetails from './Components/TaskDetails';
+
+// Importação de Estilos
 import "./App.css";
 
+// Componente principal do aplicativo
 const App = () => {
   const [tasks, setTasks]  = useState([
     {
@@ -48,17 +55,28 @@ const App = () => {
   };
 
   return (
-  <>
-    <div className='container'>
-      <Header />
-      <AddTask handleTaskAddition={handleTaskAddition} />
-      <Tasks 
-        tasks={tasks} 
-        handleTaskClick={handleTaskClick} 
-        handleTaskDeletion={handleTaskDeletion}/>
-    </div>
-      
-    </>
+      <Router>
+          <div className='container'>
+              <Header />
+              <Routes>              
+                  <Route 
+                      path="/" 
+                     //exact 
+                      render = {() => (
+                    <>
+                              <AddTask handleTaskAddition={handleTaskAddition} />
+                              <Tasks
+                                tasks={tasks}
+                                handleTaskClick={handleTaskClick}
+                                handleTaskDeletion={handleTaskDeletion}
+                              />
+                              </>
+                          )}
+                    />
+                    <Route path="/:taskTitle" exact companent={TaskDetails}/>
+              </Routes> 
+          </div>
+     </Router>
   );
 };
 
