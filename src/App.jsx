@@ -62,7 +62,7 @@ const App = () => {
                   <Route 
                       path="/" 
                      //exact 
-                      render = {() => (
+                      element = {
                     <>
                               <AddTask handleTaskAddition={handleTaskAddition} />
                               <Tasks
@@ -71,7 +71,7 @@ const App = () => {
                                 handleTaskDeletion={handleTaskDeletion}
                               />
                               </>
-                          )}
+                          }
                     />
                     <Route path="/:taskTitle" exact companent={TaskDetails}/>
               </Routes> 
