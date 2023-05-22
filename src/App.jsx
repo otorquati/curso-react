@@ -1,6 +1,6 @@
 // Importação de bibliotecas para usar o React
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 // Importação de Componentes Criados
@@ -61,7 +61,7 @@ const App = () => {
               <Routes>              
                   <Route 
                       path="/" 
-                     //exact 
+                      exact 
                       element = {
                     <>
                               <AddTask handleTaskAddition={handleTaskAddition} />
@@ -73,7 +73,11 @@ const App = () => {
                               </>
                           }
                     />
-                    <Route path="/:taskTitle" exact companent={TaskDetails}/>
+                    <Route 
+                        path="/:taskTitle" 
+                        exact 
+                        Component={TaskDetails}
+                    />
               </Routes> 
           </div>
      </Router>
